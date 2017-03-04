@@ -1,37 +1,30 @@
 package com.blackjack;
 
-import com.blackjack.lib.Card;
-import com.blackjack.lib.Deck;
-import com.blackjack.lib.Player;
+import com.blackjack.lib.heuristics.InteractiveHeuristic;
+import com.blackjack.lib.heuristics.TheBookHeuristic;
 
 public class Main {
 
     public static void main(String[] args) {
-	    Card card = new Card(Card.Suit.HEARTS, 1);
-	    System.out.println("First card is a: " + card);
-	    card.setValue(12);
-	    card.setSuit(Card.Suit.CLUBS);
-        System.out.println("Card changed to: " + card);
-        try {
-            card.setValue(15);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println("Let's play Black Jack!");
+        BlackJack bj = new BlackJack(2);
+        bj.dealAll();
+        InteractiveHeuristic heuristic = new InteractiveHeuristic();
+        TheBookHeuristic bookHeuristic = new TheBookHeuristic();
+        bj.setPlayerHeuristic(0, bookHeuristic);
+        bj.setPlayerHeuristic(1, heuristic);
+        bj.playPlayers();
+        bj.playDealer();
+        System.out.println(bj);
+        System.out.println("Winners: " + bj.getWinners());
 
-        System.out.println("================");
-        Deck deck = new Deck();
-        deck.shuffle();
-        System.out.println("Dealing card: " + deck.deal());
-        System.out.println("Dealing card: " + deck.deal());
-        System.out.println("Re-shuffling . . .");
-        deck.shuffle();
-        System.out.println("Dealing card: " + deck.deal());
-
-        System.out.println("================");
-        Player p1 = new Player("Player 1");
-        p1.addCard(deck.deal());
-        System.out.println("P1 has cards: " + p1);
-        p1.discardHand();
-        System.out.println("P1 has cards: " + p1);
+        //TODO: remove this comment
+        /*
+        Idea for another game: Card version of "Elements".
+        Counters can remove value from the opponent's played cards.
+        Un-countered cards add up to the player's total points.
+        Special abilities for K/Q/J/A?
+        First person to reach 21 wins. (OR: more pts after 3 turns?)
+         */
     }
 }
