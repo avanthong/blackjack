@@ -89,11 +89,16 @@ public class BlackJack {
 
     /**
      * Sets up the next match by discarding everyone's hands.
-     * Does not re-shuffle the deck.
+     * Does not re-shuffle the deck unless there are less than 15 cards left.
      */
     public void nextMatch() {
+        dealerHand.discardHand();
         for (Player player : playerHands) {
             player.discardHand();
+        }
+        if (deck.size() <= 15) {
+            System.out.println("Deck is getting low. Shuffling deck.");
+            deck.shuffle();
         }
     }
 
