@@ -23,7 +23,9 @@ public class Main {
             bj.playPlayers();
             bj.playDealer();
             System.out.println(bj);
-            System.out.println("Winners: " + bj.getWinners());
+            bj.getWinners().forEach( (winner) -> {
+                System.out.println(winner.getName() + " won! Total wins: " + winner.getNumWins());
+            });
         }
         System.out.println("All rounds completed!");
     }

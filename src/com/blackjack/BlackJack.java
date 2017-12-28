@@ -21,7 +21,7 @@ public class BlackJack {
         deck = new Deck();
         deck.shuffle();
         dealerHeuristic = new DealerHeuristic();
-        //Burn the top card, per tradition:
+        //Burn the top card of the deck, per tradition:
         System.out.println("Burn card is: " + deck.deal());
     }
 
@@ -60,6 +60,7 @@ public class BlackJack {
             if (dealerHand.getValue() > 21 || (playerHand.getValue() <= 21 &&
                     playerHand.getValue() > dealerHand.getValue())) {
                 winners.add(playerHand);
+                playerHand.addWin();
             }
         });
         return winners;

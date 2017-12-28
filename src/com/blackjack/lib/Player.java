@@ -9,6 +9,7 @@ public class Player {
     private ArrayList<Card> hand;
     private String name;
     private BlackJackHeuristic heuristic;
+    private int numWins = 0;
 
     public Player(String name) {
         this.name = name;
@@ -17,7 +18,7 @@ public class Player {
 
     /**
      * Determines how this player will play the game.
-     * @param heuristic
+     * @param heuristic Instance of heuristic which will decide whether this player hits or stays
      */
     public void setHeuristic(BlackJackHeuristic heuristic) {
         this.heuristic = heuristic;
@@ -71,6 +72,22 @@ public class Player {
             totalValue += card.getValue().getValue();
         }
         return totalValue;
+    }
+
+    /**
+     * Adds a single win to this player's win tally
+     * @return The new win tally
+     */
+    public int addWin() {
+        return ++numWins;
+    }
+
+    /**
+     * Returns this player's current win tally
+     * @return
+     */
+    public int getNumWins() {
+        return numWins;
     }
 
     public String getName() {
