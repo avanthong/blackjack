@@ -16,7 +16,7 @@ public class Main {
         TheBookHeuristic bookHeuristic = new TheBookHeuristic();
         bj.setPlayerHeuristic(0, bookHeuristic);
         bj.setPlayerHeuristic(1, heuristic);
-        for (int i = 0; i < numGames; i++) {
+        for (int i = 1; i <= numGames; i++) {
             System.out.println("New round! This is round #" + i);
             bj.nextMatch();
             bj.dealAll();
@@ -27,6 +27,7 @@ public class Main {
                 System.out.println(winner.getName() + " won! Total wins: " + winner.getNumWins());
             });
         }
-        System.out.println("All rounds completed!");
+        System.out.println("All rounds completed! Win tallies for all players:");
+        bj.getPlayers().forEach(player -> System.out.println(player.getName() + " wins: " + player.getNumWins()));
     }
 }

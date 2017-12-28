@@ -57,7 +57,7 @@ public class BlackJack {
     public ArrayList<Player> getWinners() {
         ArrayList<Player> winners = new ArrayList<Player>(0);
         playerHands.forEach( (playerHand) -> {
-            if (playerHand.getValue() <= 21 && (dealerHand.getValue() > 21 || 
+            if (playerHand.getValue() <= 21 && (dealerHand.getValue() > 21 ||
                     playerHand.getValue() > dealerHand.getValue())) {
                 winners.add(playerHand);
                 playerHand.addWin();
@@ -101,6 +101,14 @@ public class BlackJack {
             System.out.println("Deck is getting low. Shuffling deck.");
             deck.shuffle();
         }
+    }
+
+    /**
+     * Every player hands in the game. Mostly useful for finding out who has the most wins.
+     * @return All players in the game in their current state.
+     */
+    public ArrayList<Player> getPlayers() {
+        return playerHands;
     }
 
     public String toString() {
