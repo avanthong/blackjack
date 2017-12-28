@@ -57,7 +57,7 @@ public class BlackJack {
     public ArrayList<Player> getWinners() {
         ArrayList<Player> winners = new ArrayList<Player>(0);
         playerHands.forEach( (playerHand) -> {
-            if (dealerHand.getValue() > 21 || (playerHand.getValue() <= 21 &&
+            if (playerHand.getValue() <= 21 && (dealerHand.getValue() > 21 || 
                     playerHand.getValue() > dealerHand.getValue())) {
                 winners.add(playerHand);
                 playerHand.addWin();
